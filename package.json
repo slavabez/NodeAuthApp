@@ -3,5 +3,25 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:slavabez/NodeAuthApp.git",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "nodemon": "^1.14.10",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
+  }
 }
