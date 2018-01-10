@@ -29,3 +29,8 @@ module.exports.createUser = function (newUser, cb) {
         })
     })
 };
+
+module.exports.validatePassword = (user, password) => {
+    console.log(`Validating ${password} with ${user.password} `);
+    return bcrypt.compare(user.password, password);
+};

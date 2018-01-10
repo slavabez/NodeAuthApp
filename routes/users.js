@@ -54,15 +54,28 @@ router.post('/register', (req, res) => {
 passport.use(new LocalStrategy((username, password, done) => {
     User.findOne({username})
         .then((user) => {
+            console.log(user);
             if (!user) return done(null, false, { message: 'Incorrect username'});
-            if (!user.validPassword(password)){
-                return done(null, false, { message: 'Incorrect password'});
-            } else {
-                return done(null, user);
-            }
+            User.validatePassword(user, password)
+                .then((isMatch) => {
+                    if (isMatch){
+                        return done(null, user);
+                    } else {
+                        return done(null, false, { message: 'Incorrect password' });
+                    }
+                });
         })
         .catch((err) => done(err));
 }));
+
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+    User.findOne({id}, done);
+});
+
 
 router.post(
     '/login',
